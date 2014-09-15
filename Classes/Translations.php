@@ -4,7 +4,8 @@ namespace Everyglobe\Classes;
 Class Translations {
 
     public function getCountryCodeFromCountry($country) {
-        $code = 'boo';
+        $code = '';
+
         if( $country == 'Afghanistan' )   $code = 'AF';
         if( $country == 'Aland Islands' ) $code = 'AX';
         if( $country == 'Albania' ) $code = 'AL';
