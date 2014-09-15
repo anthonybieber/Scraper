@@ -28,31 +28,36 @@ Class BudgetYourTripParser extends TravelPageParser {
      */
     public function filterCountryList($content) {
         $crawler = $this->crawler;
-
         $crawler->addHtmlContent($content);
 
         $countryList = $crawler->filterXPath("html/body/div[1]/div[3]/div[2]/div[2]/ul/li")->extract('_text', 'li');
+
         return $countryList;
     }
 
     /**
+     * Filter the price present on each countries price page, and return the price
      *
+     * @param string $content
+     *
+     * @return string $price
      */
     public function filterPrice($content) {
         $crawler = new Crawler();
         $crawler->addHtmlContent($content);
+
         $price  = $crawler->filterXPath("html/body/div[1]/div[3]/div/div/div[3]/div[4]/div/table/tr[1]/td[2]")->extract('_text', 'td');
 
         return trim($price[0]);
     }
 
     /**
-     * [savePrice description]
-     * @param  [type] $country     [description]
-     * @param  [type] $countryCode [description]
-     * @param  [type] $priceLevel  [description]
-     * @param  [type] $price       [description]
-     * @return [type]              [description]
+     * Save the price to a .chf file
+     *
+     * @param  string $country     The country that the price is provided from
+     * @param  string $priceLevel  The price level (Budget, Mid-Range, or luxury)
+     * @param  string $price       The price of the price level for a specific country
+     *
      */
     public function savePrice($country, $priceLevel, $price) {
         $filePAth = $_SERVER['DOCUMENT_ROOT'] . '/Country Prices/';
