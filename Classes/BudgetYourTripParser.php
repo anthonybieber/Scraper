@@ -62,7 +62,7 @@ Class BudgetYourTripParser extends TravelPageParser {
     public function savePrice($country, $priceLevel, $price) {
         $filePAth = $_SERVER['DOCUMENT_ROOT'] . '/Country Prices/';
         $fileName = $filePath . $country . $priceLevel . '.chf';
-        $fileContents = "Country: " . $country . ' ' . 'Price Level' . $priceLevel . ' ' . 'Price: ' . $price;
+        $fileContents = 'Country: ' . $country . ' ' . 'Price Level: ' . $priceLevel . ' ' . 'Price: ' . $price;
         if (!file_exists($filePath)) {
             mkdir('filePath', 0777, true);
         }
